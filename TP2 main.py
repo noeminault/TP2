@@ -63,7 +63,7 @@ def cordes(fct, b_inf, b_sup, precision):
         b_inf = b_sup
         b_sup = m
         
-    print(f"Valeur de la racine : {m}")
+    print(f"Valeur de la racine tronquée à 10^-5 : {m:.5f} et valeur de f(racine) : {fct(m):.0e}")
     print(f"Nombre de calcul nécessaire afin d'obtenir la précision voulue : {n}")
     return m
 
@@ -105,7 +105,7 @@ def dicotomie(fct, b_inf, b_sup, precision):
         else:
             b_inf = m
     
-    print(f"Valeur de la racine : {m}")
+    print(f"Valeur de la racine tronquée à 10^-5 : {m:.5f} et valeur de f(racine) : {fct(m):.0e}")
     print(f"Nombre de calcul nécessaire afin d'obtenir la précision voulue : {n}")
     return m
     
@@ -142,7 +142,7 @@ def newton(fct, dfct, val, precision):
         val = m
                 
     
-    print(f"Valeur de la racine : {m}")
+    print(f"Valeur de la racine tronquée à 10^-5 : {m:.5f} et valeur de f(racine) : {fct(m):.0e}")
     print(f"Nombre de calcul nécessaire afin d'obtenir la précision voulue : {n}")
     return m
     
@@ -177,7 +177,7 @@ def secante(fct, b_inf, b_sup, precision):
         m = b_sup-(b_sup-b_inf)*fct(b_sup)/(fct(b_sup)-fct(b_inf))
         b_inf  = b_sup 
         b_sup = m
-    print(f"Valeur de la racine : {m}")
+    print(f"Valeur de la racine tronquée à 10^-5 : {m:.5f} et valeur de f(racine) : {fct(m):.0e}")
     print(f"Nombre de calcul nécessaire afin d'obtenir la précision voulue : {n}")
     return m
     
@@ -205,8 +205,6 @@ def fausse_position(fct, b_inf, b_sup, precision):
     -------
     fausse_position(b_sup=1, b_inf=2, fct=lambda x: 0.51 * x - np.sin(x))
     """
-        # Print the value of the fct parameter
-    # print(f'The value of fct is: {fct.}')
     print("\n\nCalcul de la racine avec la méthode de la fausse position") 
     n = 0
     m = 1
@@ -220,7 +218,7 @@ def fausse_position(fct, b_inf, b_sup, precision):
         else:
             b_inf = m
         
-    print(f"Valeur de la racine : {m}")
+    print(f"Valeur de la racine tronquée à 10^-5 : {m:.5f} et valeur de f(racine) : {fct(m):.0e}")
     print(f"Nombre de calcul nécessaire afin d'obtenir la précision voulue : {n}")
     return m
 
@@ -248,6 +246,7 @@ def racine_all_method(fct, dfct, b_inf, b_sup, precision):
     -------
     racine_all_method(b_sup=1, b_inf=2, precision = 10**(-4), fct=lambda x: x**2-2, dfct=lambda x:2*x)
     """
+    print(f"Étude dans l'intervalle [{b_inf},{b_sup}] à la précision {precision}")
     cordes(b_sup = b_sup, b_inf = b_inf, precision = precision, fct=fct)
     print("----------------")
     dicotomie(b_sup = b_sup, b_inf = b_inf, precision = precision, fct=fct)
@@ -268,17 +267,24 @@ if __name__ == "__main__" :
     ######### Rappel #########
     # il est important de définir la dérivée (dfct pour newton) 
     
-    ######### Fonction / Dérivés #########
+    ######### Fonction / Dérivées #########
+    # --> à mettre en paramètres de la fonction
     # fct=lambda x: x**2-2, dfct=lambda x:2*x
-    # fct=lambda x: 0.51 * x - np.sin(x)), dfct=lambda x:
-    # fct=lambda x: (1 - 0.61 * x) / x, dfct=lambda x: -(1-0.61*x)/x**2-0.61/x)
-    # fct=lambda x: np.exp(x ** 2) - 56 * np.exp(-2 * x ** 2), dfct=lambda x:
+    # fct=lambda x: 0.51 * x - np.sin(x), dfct=lambda x: 0.51 − np.cos(x)
+    # fct=lambda x: (1 - 0.61 * x) / x, dfct=lambda x: -(1-0.61*x)/x**2-0.61/x
+    # fct=lambda x: np.exp(x ** 2) - 56 * np.exp(-2 * x ** 2), dfct=lambda x: 224*x*np.exp(−2*x*2)+2*x*np.exp(x*2)
     
     
     ######### Partie 1 #########
-    print("Question 1")
-    print("Une fonction qui a pour racine : racine de 2 peut etre :")
+    print("\n\nQuestion 1")
+    print("\nUne fonction qui a pour racine : racine de 2 peut etre :")
     print("f(x)=x**2-2")
-
-
-    racine_all_method(b_sup=1, b_inf=2, precision = 10**(-4), fct=lambda x: x**2-2, dfct=lambda x:2*x)
+    racine_all_method(b_inf=1, b_sup=2, precision = 10**(-4), fct=lambda x: x**2-2, dfct=lambda x:2*x)
+    print("\n\n--------------------------------")
+    print("\nQuestion 2")
+    print("\nf(x)=0.51 * x - np.sin(x)")
+    racine_all_method(b_inf=1, b_sup=2, precision = 10**(-4), fct=lambda x: 0.51 * x - np.sin(x), dfct=lambda x: 0.51 - np.cos(x))
+    print("\nf(x)=(1 - 0.61 * x) / x")
+    racine_all_method(b_inf=1.5, b_sup=2, precision = 10**(-4), fct=lambda x: (1 - 0.61 * x) / x, dfct=lambda x: -(1-0.61*x)/x**2-0.61/x)
+    print("\nf(x)=np.exp(x ** 2) - 56 * np.exp(-2 * x ** 2)")
+    racine_all_method(b_inf=1, b_sup=2, precision = 10**(-4), fct=lambda x: np.exp(x ** 2) - 56 * np.exp(-2 * (x ** 2)), dfct=lambda x: 224*x*np.exp(-2*x**2)+2*x*np.exp(x**2)) 
