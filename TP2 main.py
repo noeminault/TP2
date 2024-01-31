@@ -1,25 +1,21 @@
 # -*- coding: utf-8 -*-
 """
-Ce module contient des fonctions pour le calcul d'intégrales numériques.
+Ce module contient des fonctions pour le calcul de racine dans un intervalle donnée avec une précision donnée.
 
-Ce fichier fournit des fonctions pour le calcul d'intégrales à l'aide de différentes méthodes, telles que la méthode des rectangles, la méthode des trapèzes et la méthode de Simpson.
+Ce fichier fournit des fonctions pour le calcul de racines à l'aide de différentes méthodes, telles que la méthode des cordes, de la dicotomie, de Newton, de la secante et de la fausse position.
 
 Exemple
 -------
-Cet exemple illustre l'utilisation de ces fonctions pour le calcul d'intégrales :
-    integrale_rectangle(0, 10, 4, 0)
-    integrale_trapeze(0, 1, 0.1)
-    integrale_simpson(0, 1, 0.1, 2)
+Cet exemple illustre l'utilisation de ces fonctions pour le calcul de racines :
+    newton(val=1, fct=lambda x: (1 - 0.61 * x) / x, dfct=lambda x: -(1-0.61*x)/x**2-0.61/x)
+    fausse_position(b_sup=1, b_inf=2, fct=lambda x: 0.51 * x - np.sin(x))
+    racine_all_method(b_sup=1, b_inf=2, precision = 10**(-4), fct=lambda x: x**2-2, dfct=lambda x:2*x)
 
 Notes
 -----
     Assurez-vous d'importer le module numpy avant d'utiliser ce fichier.
 
-    Les fonctions de ce module supposent que la fonction à intégrer est définie dans la fonction 'fonction' du module.
-
-    Les paramètres 'type' pour la méthode des rectangles doivent être 0, 1 ou 2.
-
-    La fonction 'fonction_erreur' ajuste itérativement le pas jusqu'à ce que l'erreur soit inférieure à l'erreur spécifiée.
+    L'utilisation de la dérivée de la fonction est nécessaire seulement pour la méthode de Newton.
 
 """
 
