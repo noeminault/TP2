@@ -233,6 +233,17 @@ def fausse_position(fct, b_inf, b_sup, precision):
     print(f"Nombre de calcul nécessaire afin d'obtenir la précision voulue : {n}")
     return m
 
+def test_all(fct, dfct, b_inf, b_sup, precision):
+    cordes(b_sup = b_sup, b_inf = b_inf, precision = precision, fct=fct)
+    print("----------------")
+    dicotomie(b_sup = b_sup, b_inf = b_inf, precision = precision, fct=fct)
+    print("----------------")
+    newton(val = (b_sup+b_inf)/2, precision = precision, fct=fct, dfct=dfct)
+    print("----------------")
+    secante(b_sup = b_sup, b_inf = b_inf, precision = precision, fct=fct)
+    print("----------------")
+    fausse_position(b_sup=b_sup, b_inf = b_inf, precision = precision, fct=fct)
+
 ################################################################################
 #####                  Zone d'éxécution du programme/test                  #####
 ################################################################################
@@ -255,15 +266,9 @@ if __name__ == "__main__" :
     print("Une fonction qui a pour racine : racine de 2 peut etre :")
     print("f(x)=x**2-2")
 
-    cordes(b_sup=1, b_inf=2, precision = 10**(-4), fct=lambda x: x**2-2)
-    print("----------------")
-    dicotomie(b_sup=1, b_inf=2, precision = 10**(-4), fct=lambda x: x**2-2)
-    print("----------------")
-    newton(val=2, precision = 10**(-4), fct=lambda x: x**2-2, dfct=lambda x:2*x)
-    print("----------------")
-    secante(b_sup=1, b_inf=2, precision = 10**(-4), fct=lambda x: x**2-2)
-    print("----------------")
-    fausse_position(b_sup=1, b_inf=2, precision = 10**(-4), fct=lambda x: x**2-2)
+
+    test_all(b_sup=1, b_inf=2, precision = 10**(-4), fct=lambda x: x**2-2, dfct=lambda x:2*x)
+
 
     # fausse_position(b_sup=1, b_inf=2, precision = 10**(-4), fct=lambda x: 0.51 * x - np.sin(x))
     # print("----------------")
