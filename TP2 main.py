@@ -57,7 +57,6 @@ def cordes(fct, b_inf, b_sup, precision):
     cordes(b_sup=1, b_inf=2, fct=lambda x: 0.51 * x - np.sin(x))
     """
     print("\n\nCalcul de la racine avec la méthode de la corde")
-    precision = 10**(-4)
     n = 0
     m = 1  
     
@@ -97,7 +96,6 @@ def dicotomie(fct, b_inf, b_sup, precision):
     dicotomie(b_sup=1, b_inf=2, fct=lambda x: 0.51 * x - np.sin(x))
     """    
     print("\n\nCalcul de la racine avec la méthode de la dicotomie")    
-    precision = 10**(-4)
     n = 0
     m = 1
     
@@ -139,7 +137,6 @@ def newton(fct, dfct, val, precision):
     newton(val=1, fct=lambda x: (1 - 0.61 * x) / x, dfct=lambda x: -(1-0.61*x)/x**2-0.61/x)
     """    
     print("\n\nCalcul de la racine avec la méthode de Newton") 
-    precision = 10**(-4)
     n = 0
     m = 1
 
@@ -177,7 +174,6 @@ def secante(fct, b_inf, b_sup, precision):
     secante(b_sup=1, b_inf=2, fct=lambda x: 0.51 * x - np.sin(x))
     """
     print("\n\nCalcul de la racine avec la méthode de la sécante") 
-    precision = 10**(-4)
     n = 0
     m = 1
     while abs(fct(m)) > precision:
@@ -216,7 +212,6 @@ def fausse_position(fct, b_inf, b_sup, precision):
         # Print the value of the fct parameter
     # print(f'The value of fct is: {fct.}')
     print("\n\nCalcul de la racine avec la méthode de la fausse position") 
-    precision = 10**(-4)
     n = 0
     m = 1
     
@@ -233,7 +228,30 @@ def fausse_position(fct, b_inf, b_sup, precision):
     print(f"Nombre de calcul nécessaire afin d'obtenir la précision voulue : {n}")
     return m
 
-def test_all(fct, dfct, b_inf, b_sup, precision):
+def racine_all_method(fct, dfct, b_inf, b_sup, precision):
+    """Cette fonction effectue plusieurs méthodes de recherche de racine.
+
+    Paramètres
+    ----------
+    fct : function
+        La fonction pour laquelle la racine doit être trouvée.
+    dfct : function
+        La dérivée de la fonction fct.
+    b_inf : float
+        Borne inférieure de l'intervalle de recherche.
+    b_sup : float
+        Borne supérieure de l'intervalle de recherche.
+    precision : float
+        La précision souhaitée pour la racine.
+
+    Retours
+    -------
+    Aucun retour, mais imprime les résultats des différentes méthodes de recherche de racine.
+    
+    Exemple
+    -------
+    racine_all_method(b_sup=1, b_inf=2, precision = 10**(-4), fct=lambda x: x**2-2, dfct=lambda x:2*x)
+    """
     cordes(b_sup = b_sup, b_inf = b_inf, precision = precision, fct=fct)
     print("----------------")
     dicotomie(b_sup = b_sup, b_inf = b_inf, precision = precision, fct=fct)
@@ -267,15 +285,4 @@ if __name__ == "__main__" :
     print("f(x)=x**2-2")
 
 
-    test_all(b_sup=1, b_inf=2, precision = 10**(-4), fct=lambda x: x**2-2, dfct=lambda x:2*x)
-
-
-    # fausse_position(b_sup=1, b_inf=2, precision = 10**(-4), fct=lambda x: 0.51 * x - np.sin(x))
-    # print("----------------")
-    # secante(b_sup=1, b_inf=2, precision = 10**(-4), fct=lambda x: 0.51 * x - np.sin(x))
-    # print("----------------")
-    # newton(val=1, precision = 10**(-4), fct=lambda x: (1 - 0.61 * x) / x, dfct=lambda x: -(1-0.61*x)/x**2-0.61/x)
-    
-    # fausse_position(b_sup=1, b_inf=2, precision = 10**(-4), fct=lambda x: x**2-2)
-    
-    # secante(b_sup=1, b_inf=2, precision = 10**(-4), fct=lambda x: np.exp(x ** 2) - 56 * np.exp(-2 * x ** 2))
+    racine_all_method(b_sup=1, b_inf=2, precision = 10**(-4), fct=lambda x: x**2-2, dfct=lambda x:2*x)
