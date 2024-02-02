@@ -279,7 +279,7 @@ if __name__ == "__main__" :
     print("\n\nQuestion 1")
     print("\nUne fonction qui a pour racine : racine de 2 peut etre :")
     print("f(x)=x**2-2")
-    racine_all_method(b_inf=1, b_sup=2, precision = 10**(-4), fct=lambda x: x**2-2, dfct=lambda x:2*x)
+    racine_all_method(b_inf=0, b_sup=2, precision = 10**(-4), fct=lambda x: x**2-2, dfct=lambda x:2*x)
     print("\n\n--------------------------------")
     print("\nQuestion 2")
     print("\nf(x)=0.51 * x - np.sin(x)")
